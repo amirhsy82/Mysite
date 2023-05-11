@@ -1,7 +1,7 @@
 
 from django.contrib import admin
 from django.urls import path
-# form "Priject's Directory"."FileName" import "function"
+# form "Project's Directory"."FileName" import "function"
 from website.views import *
 
 app_name = 'website'

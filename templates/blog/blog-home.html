@@ -67,7 +67,7 @@
 						<li class="menu-has-children"><a href="">Blog</a>
 							<ul>
 								<li><a href="{% url 'blog:index' %}">Blog Home</a></li>
-								<li><a href="{% url 'blog:single' %}">Blog Single</a></li>
+								
 							</ul>
 						</li>
 						<li class="menu-has-children"><a href="">Pages</a>
@@ -185,7 +185,7 @@
 								<li><a href="#">Lifestyle</a></li>
 							</ul>
 							<div class="user-details row">
-								<p class="user-name col-lg-12 col-md-12 col-6"><a href="#">Mark wiens</a> <span
+								<p class="user-name col-lg-12 col-md-12 col-6"><a href="#">{{ post.author.get_full_name }}</a> <span
 										class="lnr lnr-user"></span></p>
 								<p class="date col-lg-12 col-md-12 col-6"><a href="#"> {{ post.published_date }}</a> <span
 										class="lnr lnr-calendar-full"></span></p>
@@ -199,13 +199,11 @@
 							<div class="feature-img">
 								<img class="img-fluid" src="{% static 'img/blog/feature-img1.jpg' %}" alt="">
 							</div>
-							<a class="posts-title" href="blog-single.html">
-								<h3>{{ post.title }}</h3>
-							</a>
+							<a class="posts-title" href="{% url 'blog:single' pid=post.id  %}"> <h3>{{ post.title }}</h3> </a>
 							<p class="excert">
 								{{ post.content }}
 							</p>
-							<a href="blog-single.html" class="primary-btn">View More</a>
+							<a href="/blog/" class="primary-btn">View More</a>
 						</div>
 					</div>
 					{% endfor %}

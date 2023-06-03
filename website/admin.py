@@ -7,3 +7,5 @@ class ContactAdmin(admin.ModelAdmin):
     list_display = ('name', 'email', 'created_date')
     list_filter = ('email',)
     search_fields = ('name', 'email')
+
+admin.site.register(Contact,ContactAdmin)

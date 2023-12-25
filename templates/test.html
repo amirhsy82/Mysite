@@ -1,3 +1,4 @@
+{% load blog_tags %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -7,14 +8,6 @@
     <title>Document</title>
 </head>
 <body>
-    {% for post in posts %}
-    {% if post.status == 1 %}
-    <h3>{{post.title}}</h3>
-    <p>{{post.content}}</p>
-    <small>{{post.published_date}}</small>
-    {% endif %}
-    {% endfor %}
-
-    <p> {{ post.title }} </p>
+    {% popularposts %}
 </body>
 </html>

@@ -24,10 +24,11 @@
                         <div class="tags">
                             
                             <ul>
-                                
+                                {% for cat in post.category.all %}
                                 <li>
-                                    <a href="#">{{post.category}}</a>
+                                    <a href="#">{{cat.name}}</a>
                                 </li>
+                                {% endfor %}
                                
                             </ul>
                             

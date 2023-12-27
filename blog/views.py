@@ -22,3 +22,11 @@ def blog_single(request, pid):
 
 def test(request):
     return render(request, 'test.html')
+
+def blog_search(request):
+    posts = Post.objects.filter(status=1)
+    if request.method == 'GET':
+        if search := request.Get.get('search'):
+            posts = posts.filter(content__contains=search)
+    context = {'post':posts, 'posts':posts}
+    return render(request, 'blog/blog-home.html', context)

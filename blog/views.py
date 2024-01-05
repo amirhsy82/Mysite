@@ -1,12 +1,14 @@
 from django.shortcuts import render, get_object_or_404
 from blog.models import Post
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+from django.utils import timezone
 
 
+now = timezone.now()
 
 # Create your views here.
 def blog_view(request, **kwargs):
-    posts = Post.objects.filter(status=1)
+    posts = Post.objects.filter(published_date__lte=now)
 
     if kwargs.get('cat_name') != None:
         posts = posts.filter(category__name=kwargs['cat_name'])
@@ -26,8 +28,10 @@ def blog_view(request, **kwargs):
 
 
 def blog_single(request, pid):
-    posts = Post.objects.filter(status=1)
-    post = get_object_or_404(Post, id=pid, status=1)
+    posts = Post.objects.filter(published_date__lte=now)
+    post = get_object_or_404(Post, id=pid)
+    post.counted_views += 1
+    post.save()
     context = {'post':post, 'posts':posts}
     return render(request, 'blog/blog-single.html', context)
 

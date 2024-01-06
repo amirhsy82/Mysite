@@ -3,6 +3,7 @@ from blog.models import Post
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.utils import timezone
 
+
 # Create your views here.
 def blog_view(request, **kwargs):
     posts = Post.objects.filter(status=1).filter(published_date__lte=timezone.now())
